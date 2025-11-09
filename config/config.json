@@ -1,0 +1,15 @@
+{
+  "region": "eu-north-1",
+  "bucket_name": "g16-capstone-iiitj",
+  "glue_role": "AWSGlueServiceRole-ETL",
+  "raw_denorm_path": "s3://g16-capstone-iiitj/input_file/denormalized_brazilian_dataset.csv",
+
+  "normalized_layer": "s3://g16-capstone-iiitj/raw/normalized",
+  "preprocessed_layer": "s3://g16-capstone-iiitj/preprocessed",
+  "wrangled_layer": "s3://g16-capstone-iiitj/wrangled",
+
+  "catalog_database": "olist_sales_db",
+  "crawler_name": "olist-preprocessed-crawler",
+  "athena_output": "s3://g16-capstone-iiitj/athena-results/",
+  "dashboard_output": "s3://g16-capstone-iiitj/dashboard/olist_eda.html"
+}
