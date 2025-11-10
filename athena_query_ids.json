@@ -1,0 +1,15 @@
+{
+  "order_status_distribution": "97ac0378-d14e-4626-b187-677cce001ad2",
+  "monthly_orders_revenue": "1702dafa-d1df-4c2d-8e0f-64cc81efe1bf",
+  "top_states_by_order_count": "a310f32c-12ab-480f-8baa-236f2ffee60d",
+  "payment_type_distribution": "a42e88ff-8366-42ca-a630-8e7986478919",
+  "installments_distribution": "d3b085f1-ba93-4e1b-94ea-ff831533cf63",
+  "orders_per_customer": "d50acf9a-39e9-4782-b5f5-2be9c68ee86f",
+  "customers_by_state": "9bf05635-ec24-470d-b5f7-e85d0033eb06",
+  "top_categories_by_sales": "f04781ea-8267-4a8d-8368-db6dfa9e6e77",
+  "product_price_distribution": "dd610411-9a78-44cc-8b7d-6391f246b6f5",
+  "review_score_distribution": "67c7cb66-72b0-423b-ada9-1cda7cf97fa7",
+  "delivery_delay_distribution": "49b5d61b-fd45-44a7-a700-fe491c453cdf",
+  "shipping_time_distribution": "8bc51571-ae9c-406b-9e29-a692a584d978",
+  "carrier_time_distribution": "ba903d85-878b-46aa-a310-7212822d127e"
+}

@@ -28,9 +28,9 @@ s3   = boto3.client("s3", region_name=REGION)
 def ensure_bucket_exists(bucket_name):
     try:
         s3.head_bucket(Bucket=bucket_name)
-        print(f"✅ Bucket exists: {bucket_name}")
+        print(f"Bucket exists: {bucket_name}")
     except Exception:
-        print(f"🪣 Creating bucket: {bucket_name}")
+        print(f"Creating bucket: {bucket_name}")
         s3.create_bucket(
             Bucket=bucket_name,
             CreateBucketConfiguration={"LocationConstraint": REGION}
@@ -42,12 +42,12 @@ def upload_and_run_glue_job(local_script_path, default_args):
     job_name = f"olist_{script_name}_{secrets.token_hex(3)}"
     key = f"{job_name}.py"
 
-    print(f"\n📤 Uploading {script_name}.py → s3://{TMP_BUCKET}/{key}")
+    print(f"\nUploading {script_name}.py → s3://{TMP_BUCKET}/{key}")
     with open(local_script_path, "r") as f:
         s3.put_object(Bucket=TMP_BUCKET, Key=key, Body=f.read().encode("utf-8"))
 
     # Create Glue job
-    print(f"🧩 Creating Glue job: {job_name}")
+    print(f"Creating Glue job: {job_name}")
     glue.create_job(
         Name=job_name,
         Role=ROLE,
@@ -57,7 +57,7 @@ def upload_and_run_glue_job(local_script_path, default_args):
         MaxCapacity=2.0,
     )
 
-    print(f"🚀 Starting Glue job: {job_name}")
+    print(f"Starting Glue job: {job_name}")
     run_id = glue.start_job_run(JobName=job_name)["JobRunId"]
 
     while True:
@@ -68,9 +68,9 @@ def upload_and_run_glue_job(local_script_path, default_args):
             break
 
     if state != "SUCCEEDED":
-        raise RuntimeError(f"❌ Glue job {job_name} failed: {state}")
+        raise RuntimeError(f"Glue job {job_name} failed: {state}")
     else:
-        print(f"✅ {job_name} finished successfully")
+        print(f"{job_name} finished successfully")
 
     # Cleanup (optional)
     # glue.delete_job(JobName=job_name)
@@ -81,17 +81,17 @@ def ensure_crawler_and_run():
     """Ensures Glue crawler and database exist, then runs it."""
     try:
         glue.get_database(Name=CATALOG_DB)
-        print(f"✅ Glue database exists: {CATALOG_DB}")
+        print(f"Glue database exists: {CATALOG_DB}")
     except glue.exceptions.EntityNotFoundException:
-        print(f"📚 Creating Glue database: {CATALOG_DB}")
+        print(f"Creating Glue database: {CATALOG_DB}")
         glue.create_database(DatabaseInput={"Name": CATALOG_DB})
 
     # Create crawler if not exists
     try:
         glue.get_crawler(Name=CRAWLER_NAME)
-        print(f"✅ Crawler exists: {CRAWLER_NAME}")
+        print(f"Crawler exists: {CRAWLER_NAME}")
     except glue.exceptions.EntityNotFoundException:
-        print(f"🪄 Creating crawler: {CRAWLER_NAME}")
+        print(f"Creating crawler: {CRAWLER_NAME}")
         glue.create_crawler(
             Name=CRAWLER_NAME,
             Role=ROLE,
@@ -100,22 +100,22 @@ def ensure_crawler_and_run():
             SchemaChangePolicy={"UpdateBehavior": "UPDATE_IN_DATABASE", "DeleteBehavior": "LOG"}
         )
 
-    print(f"🏃 Starting crawler: {CRAWLER_NAME}")
+    print(f"Starting crawler: {CRAWLER_NAME}")
     glue.start_crawler(Name=CRAWLER_NAME)
 
     while True:
         time.sleep(20)
         state = glue.get_crawler(Name=CRAWLER_NAME)["Crawler"]["State"]
         if state == "READY":
-            print("✅ Crawler finished cataloging data.")
+            print("Crawler finished cataloging data.")
             break
 
 
 # Defining the main flow of the Pipeline Project
 if __name__ == "__main__":
     print("\n**************************************************************************")
-    print("🚀 Starting Sales E-Commerce - Group: G16 - ETL + EDA + MLOps Pipeline")
-    print("   This project AWS Components like s3, AWS Glue, Crawler, Athena etc")
+    print("Starting >> Sales E-Commerce - Group: G16 - ETL + EDA + MLOps Pipeline")
+    print("This project uses AWS Components like S3, AWS Glue, Crawler, Athena etc")
     print("****************************************************************************\n")
 
     ensure_bucket_exists(TMP_BUCKET)
@@ -171,25 +171,33 @@ if __name__ == "__main__":
     # ---------------------------------------------
     # Step 1: Run Athena EDA Queries
     # ---------------------------------------------
-    print("\n📈 Running Athena EDA...")
+    print("\nRunning Athena EDA...")
     ids = perform_eda()
 
-    print("\n🧱 Generating HTML Dashboard (EDA)...")
+    print("\nGenerating HTML Dashboard (EDA)...")
     with open("athena_query_ids.json", "w") as f:
         json.dump(ids, f, indent=2)
     build_dashboard()
-    print("✅ EDA Dashboard built successfully!")
+    print("EDA Dashboard built successfully!")
 
     # ---------------------------------------------
     # Step 2: Run Machine Learning automatically
     # ---------------------------------------------
-    print("\n🤖 Running ML Models: Logistic Regression vs Random Forest...")
+    print("\nRunning ML Models: Logistic Regression vs Random Forest...")
     try:
         subprocess.run(["python", "scripts/run_ml_model.py"], check=True)
-        print("✅ ML Analysis completed and appended to dashboard.")
+        print("ML Analysis completed and appended to dashboard.")
     except subprocess.CalledProcessError as e:
-        print("⚠️ ML step failed:", e)
+        print("ML step failed:", e)
 
-    print("\n🎉 Pipeline completed successfully!")
-    print("📊 Final Combined Dashboard → output/olist_eda_dashboard.html")
+    print("\nRunning Enhanced ML Insights (Gradient Boosting etc.)...")
+    try:
+        subprocess.run(["python", "scripts/run_ml_model_enhanced.py"], check=True)
+        print("Enhanced ML Insights completed successfully.")
+        print("Advanced ML Dashboard → output/olist_ml_dashboard.html")
+    except subprocess.CalledProcessError as e:
+        print("Enhanced ML step failed:", e)
+
+    print("\nPipeline completed successfully!")
+    print("Final Combined Dashboard → output/olist_eda_dashboard.html")
 
