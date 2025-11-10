@@ -226,7 +226,7 @@ aws-etl-pipeline/
 
 ## 🧑‍💻 Authors & Acknowledgments
 
-**Developed by:** Group G16 – Ankit, Sarthak, Kaushal, Saransh
+**Developed by:** Group G16 – Ankit, Sarthak, Kaushal, Saransh <br>
 **Mentors:** *[Add Faculty / Industry Mentor Names]*  
 **Dataset:** [Olist Brazilian E-Commerce Dataset (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
