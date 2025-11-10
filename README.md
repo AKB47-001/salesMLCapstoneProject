@@ -1,7 +1,7 @@
-# 🛒 Brazilian E-Commerce Sales Analytics – AWS ETL + EDA + ML Pipeline
+# 🛒 E-Commerce Sales Analytics – AWS ETL + EDA + ML Pipeline
 
 ### 📊 IIT Jodhpur Capstone Project – Group G16  
-*End-to-End AWS Data Engineering + Machine Learning Pipeline on the Olist Brazilian E-Commerce Dataset*
+*End-to-End AWS Data Engineering + Machine Learning Pipeline on the E-Commerce Sales Dataset*
 
 ---
 
@@ -11,7 +11,6 @@
 <p align="center">
   <img width="1024" height="1536" alt="ArchitectureImage" src="https://github.com/user-attachments/assets/edced33e-f614-4b73-b92f-4b88a4e37a4e" />
 </p>
-
 **Figure:** High-level AWS architecture showing S3 data lake, Glue ETL jobs, Athena analytics,  
 and ML dashboard generation pipeline.
 
@@ -64,7 +63,7 @@ Raw CSV (Denormalized)
 
 ## 💡 Project Summary
 
-This project analyzes **Brazilian e-commerce sales data** to understand and predict **delivery performance**.  
+This project analyzes **E-Commerce sales data** to understand and predict **delivery performance**.  
 It extracts valuable business insights such as:
 
 - Sales trends by month, region, and category  
@@ -97,7 +96,7 @@ into a single automated workflow.
 
 | Category | Technologies |
 |-----------|---------------|
-| **Language** | Python 3.12+ |
+| **Language** | Python 3.12 |
 | **Data Engineering** | PySpark (AWS Glue), AWS Glue Crawler |
 | **Data Storage** | Amazon S3 (Raw → Normalized → Preprocessed → Wrangled Layers) |
 | **Data Analytics** | AWS Athena, AWS Wrangler |
@@ -113,8 +112,8 @@ into a single automated workflow.
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/aws-etl-ecommerce-pipeline.git
-cd aws-etl-ecommerce-pipeline
+git clone https://github.com/<your-username>/salesMLCapstoneProject.git
+cd salesMLCapstoneProject
 ```
 
 ### 2️⃣ Create a Virtual Environment
@@ -139,7 +138,7 @@ pip install --upgrade pip setuptools wheel
 
 ### 4️⃣ Install Dependencies
 ```bash
-pip install -r requirements_resolved.txt
+pip install -r requirements.txt
 ```
 > 💡 *If `requirements_resolved.txt` is not available, use `requirements.txt` instead.*
 
