@@ -7,8 +7,9 @@
 
 ## 🏗️ System Architecture
 
+
 <p align="center">
-  <img src="assets/architecture.png" alt="AWS ETL Pipeline Architecture" width="850"/>
+  <img width="1024" height="1536" alt="ArchitectureImage" src="https://github.com/user-attachments/assets/edced33e-f614-4b73-b92f-4b88a4e37a4e" />
 </p>
 
 **Figure:** High-level AWS architecture showing S3 data lake, Glue ETL jobs, Athena analytics,  
