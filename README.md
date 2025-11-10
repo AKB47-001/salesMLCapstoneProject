@@ -51,7 +51,7 @@ Raw CSV (Denormalized)
 [ML Models] 🤖 Logistic Regression + Random Forest → Late delivery prediction
         │
         ▼
-[Enhanced ML] 🚀 Gradient Boosting + SVC + extra metrics + feature insights
+[Enhanced ML] 🚀 Gradient Boosting + extra metrics + feature insights
         │
         ▼
 📊 Two Dashboards:
@@ -183,7 +183,7 @@ salesMLCapstoneProject/
 │   ├── athena_eda_runner.py         # Step 5 - Athena EDA queries
 │   ├── build_html_dashboard.py      # Step 6 - EDA dashboard
 │   ├── run_ml_model.py              # Step 7 - Base ML (LogReg, RF)
-│   ├── run_ml_model_enhanced.py     # Step 8 - Enhanced ML (GB, SVC, metrics)
+│   ├── run_ml_model_enhanced.py     # Step 8 - Enhanced ML (GB and metrics)
 │           
 ├── data/                            # Cached wrangled dataset
 ├── output/
@@ -207,7 +207,7 @@ salesMLCapstoneProject/
 - Visuals: ROC Curves, Feature Importance, Confusion Matrix  
 
 ### Enhanced Models (`run_ml_model_enhanced.py`)
-- Gradient Boosting & SVC  
+- Gradient Boosting  
 - Metrics: Precision, Recall, F1-Score, Training Time  
 - Feature Correlation Heatmap  
 - Class Balance Chart  
