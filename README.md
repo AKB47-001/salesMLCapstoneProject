@@ -156,7 +156,7 @@ aws sts get-caller-identity
 
 ### 6️⃣ Run the Full Pipeline
 ```bash
-python scripts/run_full_pipeline.py
+python run_full_pipeline.py
 ```
 
 This single command will:
